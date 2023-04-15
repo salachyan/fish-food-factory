@@ -4,7 +4,7 @@ root = Tk()
 root.geometry("400x400")
 label = Text(root)
   
-bgimg= PhotoImage(file = "fish-food-factory-code/background.png")
+bgimg= PhotoImage(file = "background.png")
 limg= Label(root, i=bgimg)
 limg.pack()
 for i in new_foods: 
