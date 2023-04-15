@@ -1,14 +1,14 @@
 import tkinter as tk
 import random
-import matplotlib.pyplot as plt
-import numpy as np
+#import matplotlib.pyplot as plt
+#import numpy as np
 from PIL import Image, ImageTk
 
 
 class Bubble(tk.Canvas):
     def __init__(self, master=None, size=50):
         super().__init__(master, width=size, height=size, highlightthickness=0, bd=0)
-        image = Image.open("bubble.png").resize((size, size))
+        image = Image.open('fish-food-factory-codebubble.png').resize((size, size))
         self.photo = ImageTk.PhotoImage(image)
         self.create_image(0, 0, image=self.photo, anchor=tk.NW)
         self.pack()
@@ -31,7 +31,7 @@ class LandingPage(tk.Frame):
         self.canvas.place(x=0, y=0)
 
         # Load and display the background image
-        self.bg_image = Image.open("landingBackground.png")
+        self.bg_image = Image.open('fish-food-factory-code/landingBackground.png')
         width, height = self.bg_image.size
         bg = self.bg_image.resize((width // 5, height // 5))
         self.bg_image = ImageTk.PhotoImage(bg)
