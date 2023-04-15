@@ -1,6 +1,20 @@
 import tkinter as tk
 from tkinter import font
 
+class Heart(tk.Canvas):
+    def __init__(self, master=None, size=20, fill="#FFB6C1"):
+        super().__init__(master, width=size, height=size, highlightthickness=0, bd=0)
+        self.create_oval(0, 0, size, size, fill=fill, outline="")
+        self.create_polygon(
+            size/2, size*0.1,
+            size*0.8, size*0.5,
+            size/2, size*0.9,
+            size*0.2, size*0.5,
+            fill="#FFFFFF", outline="")
+        self.pack()
+        self.place(x=random.randint(0, master.winfo_screenwidth()-size),
+                   y=random.randint(0, master.winfo_screenheight()-size))
+
 class LandingPage(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -26,21 +40,26 @@ class LandingPage(tk.Frame):
         self.button4 = tk.Button(self, text="Page 4", command=self.page4, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
         self.button4.pack(pady=10)
 
+    def create_hearts(self):
+        # Create 20 heart widgets and place them randomly around the screen
+        for _ in range(20):
+            heart = Heart(master=self, size=20, fill="#FFB6C1")
+
     def page1(self):
         # Replace this with the code for the first page
-        print("Page 1")
+        print("Enter Receipt")
 
     def page2(self):
         # Replace this with the code for the second page
-        print("Page 2")
+        print("My Ecosystem")
 
     def page3(self):
         # Replace this with the code for the third page
-        print("Page 3")
+        print("See Current Groceries")
 
     def page4(self):
         # Replace this with the code for the fourth page
-        print("Page 4")
+        print("See Food History")
 
 
 if __name__ == "__main__":
