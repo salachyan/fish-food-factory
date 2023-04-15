@@ -6,7 +6,6 @@ label = Text(root)
   
 bgimg= PhotoImage(file = "fish-food-factory-code/background.png")
 limg= Label(root, i=bgimg)
-limg.place(x=0, y=0)
 limg.pack()
 for i in new_foods: 
     label.insert(END,i+'\n')
