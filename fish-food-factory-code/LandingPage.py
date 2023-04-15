@@ -79,13 +79,15 @@ class LandingPage(tk.Frame):
         food_waste = np.random.randint(1, 10, size=len(weeks))
 
         # Create a bar chart of the data
+
         fig, ax = plt.subplots()
-        ax.bar(weeks, food_waste)
+        plt.plot(weeks, food_waste, color='#60FFFF', linestyle='dashed', linewidth = 1,
+         marker='o', markerfacecolor='#FF94F7', markersize=12)
 
         # Set chart title and axis labels
-        ax.set_title('Amount of Food Wasted per Week (lbs)')
+        ax.set_title('Amount of Food Wasted per Week in lbs')
         ax.set_xlabel('Weeks')
-        ax.set_ylabel('Amount of Food Wasted')
+        ax.set_ylabel('Amount of Food Wasted (lbs)')
 
         # Display the chart
         plt.show()
