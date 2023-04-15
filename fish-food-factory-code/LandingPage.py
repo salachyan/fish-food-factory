@@ -1,5 +1,7 @@
 import tkinter as tk
 import random
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class Bubble(tk.Canvas):
@@ -24,20 +26,20 @@ class LandingPage(tk.Frame):
         self.configure(bg="#C6E2FF")
 
         # Create a label for the landing page
-        self.label = tk.Label(self, text="Welcome to the Fish Food Factory!", font=("Comfortaa", 20))
+        self.label = tk.Label(self, text="Welcome to the Fish Food Factory!", font=("Comic Sans MS", 20))
         self.label.pack(pady=30)
 
         # Create 4 buttons for different pages
-        self.button1 = tk.Button(self, text="Page 1", command=self.page1, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
+        self.button1 = tk.Button(self, text="Enter Receipt", command=self.page1, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
         self.button1.pack(pady=10)
 
-        self.button2 = tk.Button(self, text="Page 2", command=self.page2, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
+        self.button2 = tk.Button(self, text="My Ecosystem", command=self.page2, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
         self.button2.pack(pady=10)
 
-        self.button3 = tk.Button(self, text="Page 3", command=self.page3, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
+        self.button3 = tk.Button(self, text="See Current Groceries", command=self.page3, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
         self.button3.pack(pady=10)
 
-        self.button4 = tk.Button(self, text="Page 4", command=self.page4, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
+        self.button4 = tk.Button(self, text="See Food Waste History", command=self.page4, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
         self.button4.pack(pady=10)
 
     def create_bubbles(self):
@@ -51,15 +53,29 @@ class LandingPage(tk.Frame):
 
     def page2(self):
         # Replace this with the code for the second page
-        print("My Ecosystem")
+        print("Enter Receipt")
 
     def page3(self):
         # Replace this with the code for the third page
-        print("See Current Groceries")
+        print("Enter Receipt")
 
     def page4(self):
-        # Replace this with the code for the fourth page
-        print("See Food Waste History")
+        # Generate fake data for food wasted per week
+        weeks = ['Week 3/', 'Week 2', 'Week 3', 'Week 4']
+        food_waste = np.random.randint(1, 10, size=len(weeks))
+
+        # Create a bar chart of the data
+        fig, ax = plt.subplots()
+        ax.bar(weeks, food_waste)
+
+        # Set chart title and axis labels
+        ax.set_title('Amount of Food Wasted per Week (lbs)')
+        ax.set_xlabel('Weeks')
+        ax.set_ylabel('Amount of Food Wasted')
+
+        # Display the chart
+        plt.show()
+
 
 
 if __name__ == "__main__":
