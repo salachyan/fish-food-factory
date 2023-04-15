@@ -5,7 +5,7 @@ import random
 from PIL import Image, ImageTk
 
 
-class Bubble(tk.Canvas):
+class mainBubble(tk.Canvas):
     def __init__(self, master=None, size=50):
         super().__init__(master, width=size, height=size, highlightthickness=0, bd=0)
         image = Image.open('fish-food-factory-codebubble.png').resize((size, size))
@@ -36,30 +36,33 @@ class LandingPage(tk.Frame):
         bg = self.bg_image.resize((width // 5, height // 5))
         self.bg_image = ImageTk.PhotoImage(bg)
         self.canvas.create_image(0, 0, image=self.bg_image, anchor=tk.NW)
-        # Set the background color of the landing page
-        #self.configure(bg="#C6E2FF")
+
 
         # Create a label for the landing page
         self.label = tk.Label(self, text="Welcome to the Fish Food Factory!", font=("Comic Sans MS", 20))
-        self.label.pack(pady=30)
+        self.label.pack(pady=20)
 
         # Create 4 buttons for different pages
         self.button1 = tk.Button(self, text="Enter Receipt", command=self.page1, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
-        self.button1.pack(pady=10)
+        self.button1.pack(pady=9)
 
         self.button2 = tk.Button(self, text="My Ecosystem", command=self.page2, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
-        self.button2.pack(pady=10)
+        self.button2.pack(pady=9)
 
         self.button3 = tk.Button(self, text="See Current Groceries", command=self.page3, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
-        self.button3.pack(pady=10)
+        self.button3.pack(pady=9)
 
         self.button4 = tk.Button(self, text="See Food Waste History", command=self.page4, font=("Comic Sans MS", 16), bg="#FFE6E6", padx=20, pady=10)
-        self.button4.pack(pady=10)
+        self.button4.pack(pady=9)
+
+        self.button5 = tk.Button(self, text="Your Awards", command=self.page5, font=("Comic Sans MS", 16),
+                                 bg="#FFE6E6", padx=20, pady=10)
+        self.button5.pack(pady=9)
 
     def create_bubbles(self):
         # Create 20 heart widgets and place them randomly around the screen
         for _ in range(20):
-            bubble = Bubble(master=self, size=20)
+            bubble = mainBubble(master=self, size=20)
 
     def page1(self):
         # Replace this with the code for the first page
@@ -79,16 +82,22 @@ class LandingPage(tk.Frame):
         food_waste = np.random.randint(1, 10, size=len(weeks))
 
         # Create a bar chart of the data
+
         fig, ax = plt.subplots()
-        ax.bar(weeks, food_waste)
+        plt.plot(weeks, food_waste, color='#60FFFF', linestyle='dashed', linewidth = 1,
+         marker='o', markerfacecolor='#FF94F7', markersize=12)
 
         # Set chart title and axis labels
-        ax.set_title('Amount of Food Wasted per Week (lbs)')
+        ax.set_title('Amount of Food Wasted per Week in lbs')
         ax.set_xlabel('Weeks')
-        ax.set_ylabel('Amount of Food Wasted')
+        ax.set_ylabel('Amount of Food Wasted (lbs)')
 
         # Display the chart
         plt.show()
+
+    def page5(self):
+        # Replace this with the code for the third page
+        print("Enter Receipt")
 
 
 if __name__ == "__main__":
@@ -96,11 +105,9 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.title("Fish Food Factory")
 
+    root.configure(bg="#FFE6E6")
     # Set the window size
     # root.geometry("600x600")
-
-    # Set the window background color
-    # root.configure(bg="#FFE6E6")
 
     # Create a landing page and display it
     landing_page = LandingPage(master=root)
