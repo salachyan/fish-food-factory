@@ -1,19 +1,15 @@
 import tkinter as tk
-from tkinter import font
+import random
 
-class Heart(tk.Canvas):
-    def __init__(self, master=None, size=20, fill="#FFB6C1"):
+
+class Bubble(tk.Canvas):
+    def __init__(self, master=None, size=20, fill="#87CEEB"):
         super().__init__(master, width=size, height=size, highlightthickness=0, bd=0)
         self.create_oval(0, 0, size, size, fill=fill, outline="")
-        self.create_polygon(
-            size/2, size*0.1,
-            size*0.8, size*0.5,
-            size/2, size*0.9,
-            size*0.2, size*0.5,
-            fill="#FFFFFF", outline="")
         self.pack()
         self.place(x=random.randint(0, master.winfo_screenwidth()-size),
                    y=random.randint(0, master.winfo_screenheight()-size))
+
 
 class LandingPage(tk.Frame):
     def __init__(self, master=None):
@@ -21,6 +17,8 @@ class LandingPage(tk.Frame):
         self.master = master
         self.pack()
         self.create_widgets()
+        self.create_hearts()
+
 
     def create_widgets(self):
         # Create a label for the landing page
@@ -43,7 +41,7 @@ class LandingPage(tk.Frame):
     def create_hearts(self):
         # Create 20 heart widgets and place them randomly around the screen
         for _ in range(20):
-            heart = Heart(master=self, size=20, fill="#FFB6C1")
+            heart = Bubble(master=self, size=20, fill="#87CEEB")
 
     def page1(self):
         # Replace this with the code for the first page
