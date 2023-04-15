@@ -3,6 +3,8 @@ import random
 #import matplotlib.pyplot as plt
 #import numpy as np
 from PIL import Image, ImageTk
+from tkinter import *
+
 
 
 class mainBubble(tk.Canvas):
@@ -71,6 +73,17 @@ class LandingPage(tk.Frame):
 
     def page2(self):
         # Replace this with the code for the second page
+        # rootp2 = Tk()
+        # image = Image.open('ecosystemwithFish.png')
+        # # The (450, 350) is (height, width)
+        # image = image.resize((400, 400), Image.ANTIALIAS)
+        # my_img = ImageTk.PhotoImage(image)
+        #
+        # # Slightly modified, this works for me
+        # my_lbl = Label(image=my_img)
+        # my_lbl.pack()
+        # #
+        # rootp2.mainloop()
         print("Enter Receipt")
 
     def page3(self):
@@ -95,9 +108,22 @@ class LandingPage(tk.Frame):
 
         # Display the chart
         plt.show()
+        print("Enter Receipt")
 
     def page5(self):
         # Replace this with the code for the third page
+        # rootp5 = Tk()
+        #
+        # image = Image.open('awardsWithShell.png')
+        # # The (450, 350) is (height, width)
+        # image = image.resize((400, 400), Image.ANTIALIAS)
+        # my_img = ImageTk.PhotoImage(image)
+        #
+        # # Slightly modified, this works for me
+        # my_lbl = Label(image=my_img)
+        # my_lbl.pack()
+        # #
+        # rootp5.mainloop()
         print("Enter Receipt")
 
 
