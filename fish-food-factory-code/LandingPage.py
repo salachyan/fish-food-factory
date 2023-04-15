@@ -13,17 +13,19 @@ class Bubble(tk.Canvas):
 
 class LandingPage(tk.Frame):
     def __init__(self, master=None):
-        super().__init__(master)
+        super().__init__(master, width=600, height=600)
         self.master = master
         self.pack()
         self.create_widgets()
-        self.create_hearts()
-
+        self.create_bubbles()
 
     def create_widgets(self):
+        # Set the background color of the landing page
+        self.configure(bg="#C6E2FF")
+
         # Create a label for the landing page
         self.label = tk.Label(self, text="Welcome to the Fish Food Factory!", font=("Comfortaa", 20))
-        self.label.pack(pady=20)
+        self.label.pack(pady=30)
 
         # Create 4 buttons for different pages
         self.button1 = tk.Button(self, text="Page 1", command=self.page1, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
@@ -38,7 +40,7 @@ class LandingPage(tk.Frame):
         self.button4 = tk.Button(self, text="Page 4", command=self.page4, font=("Comfortaa", 16), bg="#FFE6E6", padx=20, pady=10)
         self.button4.pack(pady=10)
 
-    def create_hearts(self):
+    def create_bubbles(self):
         # Create 20 heart widgets and place them randomly around the screen
         for _ in range(20):
             heart = Bubble(master=self, size=20, fill="#87CEEB")
@@ -57,7 +59,7 @@ class LandingPage(tk.Frame):
 
     def page4(self):
         # Replace this with the code for the fourth page
-        print("See Food History")
+        print("See Food Waste History")
 
 
 if __name__ == "__main__":
@@ -66,7 +68,7 @@ if __name__ == "__main__":
     root.title("Fish Food Factory")
 
     # Set the window size
-    root.geometry("400x400")
+    root.geometry("600x600")
 
     # Set the window background color
     root.configure(bg="#FFE6E6")
