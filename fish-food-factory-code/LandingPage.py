@@ -2,28 +2,42 @@ import tkinter as tk
 import random
 import matplotlib.pyplot as plt
 import numpy as np
+from PIL import Image, ImageTk
 
 
 class Bubble(tk.Canvas):
-    def __init__(self, master=None, size=20, fill="#87CEEB"):
+    def __init__(self, master=None, size=50):
         super().__init__(master, width=size, height=size, highlightthickness=0, bd=0)
-        self.create_oval(0, 0, size, size, fill=fill, outline="")
+        image = Image.open("bubble.png").resize((size, size))
+        self.photo = ImageTk.PhotoImage(image)
+        self.create_image(0, 0, image=self.photo, anchor=tk.NW)
         self.pack()
-        self.place(x=random.randint(0, master.winfo_screenwidth()-size),
-                   y=random.randint(0, master.winfo_screenheight()-size))
+        self.place(x=random.randint(0, master.winfo_screenwidth()-2*size),
+                   y=random.randint(0, master.winfo_screenheight()-2*size))
 
 
 class LandingPage(tk.Frame):
     def __init__(self, master=None):
-        super().__init__(master, width=600, height=600)
+        super().__init__(master, width=800, height=800)
         self.master = master
         self.pack()
         self.create_widgets()
         self.create_bubbles()
 
     def create_widgets(self):
+        # Create a canvas for the background image
+        self.canvas = tk.Canvas(self, width=800, height=800)
+        self.canvas.pack()
+        self.canvas.place(x=0, y=0)
+
+        # Load and display the background image
+        self.bg_image = Image.open("landingBackground.png")
+        width, height = self.bg_image.size
+        bg = self.bg_image.resize((width // 5, height // 5))
+        self.bg_image = ImageTk.PhotoImage(bg)
+        self.canvas.create_image(0, 0, image=self.bg_image, anchor=tk.NW)
         # Set the background color of the landing page
-        self.configure(bg="#C6E2FF")
+        #self.configure(bg="#C6E2FF")
 
         # Create a label for the landing page
         self.label = tk.Label(self, text="Welcome to the Fish Food Factory!", font=("Comic Sans MS", 20))
@@ -45,7 +59,7 @@ class LandingPage(tk.Frame):
     def create_bubbles(self):
         # Create 20 heart widgets and place them randomly around the screen
         for _ in range(20):
-            heart = Bubble(master=self, size=20, fill="#87CEEB")
+            bubble = Bubble(master=self, size=20)
 
     def page1(self):
         # Replace this with the code for the first page
@@ -61,7 +75,7 @@ class LandingPage(tk.Frame):
 
     def page4(self):
         # Generate fake data for food wasted per week
-        weeks = ['Week 3/', 'Week 2', 'Week 3', 'Week 4']
+        weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4']
         food_waste = np.random.randint(1, 10, size=len(weeks))
 
         # Create a bar chart of the data
@@ -77,17 +91,16 @@ class LandingPage(tk.Frame):
         plt.show()
 
 
-
 if __name__ == "__main__":
     # Create a root window and set its title
     root = tk.Tk()
     root.title("Fish Food Factory")
 
     # Set the window size
-    root.geometry("600x600")
+    # root.geometry("600x600")
 
     # Set the window background color
-    root.configure(bg="#FFE6E6")
+    # root.configure(bg="#FFE6E6")
 
     # Create a landing page and display it
     landing_page = LandingPage(master=root)
