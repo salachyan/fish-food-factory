@@ -1,6 +1,10 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
+
+from tkinter import *
+from PIL import ImageTk, Image
+
 root=Tk()
 
 image = Image.open('ecosystemwithFish.png')
@@ -14,3 +18,4 @@ my_lbl = Label(image=my_img)
 my_lbl.pack()
 #
 root.mainloop()
+ecoSystem().mainloop()

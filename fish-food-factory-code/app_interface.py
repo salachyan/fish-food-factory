@@ -2,19 +2,42 @@ import tkinter
 
 from PIL import Image, ImageTk
 from tkinter import *
+from LandingPage import LandingPage
 
 
-class ReceiptReader(Tk):
+
+class CompleteList(Tk):
     def __init__(self):
         super().__init__()
-        self.frame = Frame(self,width = 600, height = 400)
-        self.frame.pack()
-        imag = Image.open("fish-food-factory-code/harrisTeeter.jpg")
-        harrisTeet = ImageTk.PhotoImage(imag)
-        label = Label(self.frame,image = harrisTeet)
-        label.pack()
+        self.title("Receipt List")
+        self.configure(bg="#FFE6E6")
+        self.testFrame1 = Frame()
 
-        Button(self.frame, text='Use This Image', bg="#FFE6E6", command=TestMainApplication().mainloop()).pack()
+        self.testFrame1 = LabelFrame(self, text="List of Extracted Groceries", bg="#FFE6E6", padx=20, pady=20)
+        self.testFrame1.pack(pady=20, padx=10)
+        self.testFrame2 = Frame()
+        self.testFrame3 = Frame()
+        self.testFrame4 = Frame()
+        final = []
+        final_list_of_food = ["avocado", "cucumber", "onion", "lettuce", "cilantro"]
+
+        def delete():
+            self.destroy()
+            LandingPage().mainloop()
+
+
+        def finallist():
+            for index, item in enumerate(final_list_of_food):
+                final.append(Label(self, text=item,
+                                           width=20,
+                                           font=('Comic Sans MS', 17),
+                                           anchor="w",bg="#FFE6E6"))
+                final[index].pack()
+
+        finallist()
+        Button(self, text='Back to Home',bg="#FFE6E6",command = delete).pack()
+
+        self.testFrame1.grid(row=0, column=0, rowspan=3, columnspan=3, sticky='nsew')
 
 
 class TestMainApplication(Tk):
@@ -46,24 +69,6 @@ class TestMainApplication(Tk):
             lst_of_foods_new = ["avocado","cucumber","onion", "lettuce", "cilantro","rice"]
             listFoods(self.grocerylist,lst_of_foods_new)
 
-        def CompleteList():
-            newWindow = Tk()
-            self.destroy()
-
-            newWindow.title("Perishables List")
-            newWindow.configure(bg="#FFE6E6")
-            newWindow.minsize(width=300, height=500)
-            newWindow.testFrame1 = LabelFrame(newWindow, text="List of Extracted Groceries", bg="#FFE6E6", padx=20, pady=20)
-            newWindow.testFrame1.pack(pady=20, padx=10)
-            final = []
-            final_list_of_food = ["avocado", "cucumber", "onion", "lettuce", "cilantro"]
-            for index, item in enumerate(final_list_of_food):
-                final.append(Label(newWindow.testFrame1, text=item,
-                                           width=20,
-                                           font=('Comic Sans MS', 17),
-                                           anchor="w",bg="#FFE6E6"))
-                final[index].pack()
-            Button(newWindow.testFrame1, text='Select All',bg="#FFE6E6", command=select_all).pack()
 
         def listFoods(testFrame,lst_of_foods):
             for index, item in enumerate(lst_of_foods):
@@ -72,6 +77,9 @@ class TestMainApplication(Tk):
                                     font =('Comic Sans MS', 17),bg="#FFE6E6",
                                     anchor="w"))
                 endlist[index].pack()
+        def runList():
+            self.destroy()
+            CompleteList().mainloop()
 
         def buttons(testFrame):
             var1 = IntVar()
@@ -81,7 +89,7 @@ class TestMainApplication(Tk):
             Label(testFrame,  text='Missing an Item? Add it!',bg="#FFE6E6").pack()
             Text(testFrame,height = 1,width=15,bg="#FFE6E6").pack()
             Button(testFrame, text= 'Add Missing Item',command=add_item,bg="#FFE6E6").pack()
-            Button(testFrame,text="Everythings In!", command=CompleteList,bg="#FFE6E6").pack()
+            Button(testFrame,text="Everythings In!", command=runList,bg="#FFE6E6").pack()
             self.testFrame1.grid(row=0, column=0, rowspan=3, columnspan=3, sticky='nsew')
 
             # for i in lst_cbox:
@@ -96,4 +104,4 @@ class TestMainApplication(Tk):
 
 
 #DISPLAY THE WINDOW
-ReceiptReader().mainloop()
+TestMainApplication().mainloop()
