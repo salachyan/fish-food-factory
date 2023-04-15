@@ -1,7 +1,8 @@
 # import tkinter as tk
 
+
 from tkinter import *
-class TestMainApplication(Tk):
+class TestMainApplication2(Tk):
     def __init__(self):
         super().__init__()
         self.title("Receipt List")
@@ -12,7 +13,6 @@ class TestMainApplication(Tk):
         self.testFrame2 = Frame()
         self.testFrame3 = Frame()
         self.testFrame4 = Frame()
-
 
         lst_of_foods = ["avocado", "cucumber", "onion", "lettuce", "cilantro","rice"]
         endlist = []
@@ -75,4 +75,5 @@ class TestMainApplication(Tk):
 
 
 #DISPLAY THE WINDOW
-TestMainApplication().mainloop()
+print("BYE")
+TestMainApplication2().mainloop()
