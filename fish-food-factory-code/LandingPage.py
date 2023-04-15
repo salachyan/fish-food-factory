@@ -12,6 +12,7 @@ class Bubble(tk.Canvas):
         self.photo = ImageTk.PhotoImage(image)
         self.create_image(0, 0, image=self.photo, anchor=tk.NW)
         self.pack()
+
         self.place(x=random.randint(0, master.winfo_screenwidth()-2*size),
                    y=random.randint(0, master.winfo_screenheight()-2*size))
 
