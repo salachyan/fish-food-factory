@@ -1,6 +1,5 @@
 import tkinter as tk
 
-x = "hello"
 lst_of_foods = [1,2,3]
 
 #MAKE WINDOW
