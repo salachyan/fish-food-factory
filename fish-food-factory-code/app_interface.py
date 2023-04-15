@@ -12,46 +12,66 @@ class TestMainApplication(Tk):
         self.testFrame2 = Frame()
         self.testFrame3 = Frame()
         self.testFrame4 = Frame()
-        def listFoods(testFrame):
-            lst_of_foods = ["avocado","strawberries","grapes"]
-            lst_cbox = []
-            for i in range(0,len(lst_of_foods)):
-                c1 = Checkbutton(testFrame,text=lst_of_foods[i],
+
+
+        lst_of_foods = ["avocado", "cucumber", "onion", "lettuce", "cilantro","rice"]
+        endlist = []
+        def select_all():
+            for i in endlist:
+                i.select()
+
+        def deselect_all():
+            for i in endlist:
+                i.deselect()
+
+        def add_item():
+            lst_of_foods_new = ["avocado","cucumber","onion", "lettuce", "cilantro","rice"]
+            listFoods(self.grocerylist,lst_of_foods_new)
+
+        def CompleteList():
+            newWindow = Tk()
+            self.destroy()
+            newWindow.title("Perishables List")
+            newWindow.minsize(width=300, height=500)
+            newWindow.testFrame1 = LabelFrame(newWindow, text="List of Extracted Groceries", padx=20, pady=20)
+            newWindow.testFrame1.pack(pady=20, padx=10)
+            final = []
+            final_list_of_food = ["avocado", "cucumber", "onion", "lettuce", "cilantro"]
+            for index, item in enumerate(final_list_of_food):
+                final.append(Label(newWindow.testFrame1, text=item,
+                                           width=20,
+                                           font=('Comic Sans MS', 17),
+                                           anchor="w"))
+                final[index].pack()
+
+        def listFoods(testFrame,lst_of_foods):
+            for index, item in enumerate(lst_of_foods):
+                endlist.append(Checkbutton(testFrame,text=item,
                                     width = 20,
-                                    font =('Comic Sans MS', 17)
-                                    ,onvalue = 1, offvalue = 0,
-                                    anchor="w").pack()
+                                    font =('Comic Sans MS', 17),
+                                    anchor="w"))
+                endlist[index].pack()
+
+        def buttons(testFrame):
+            var1 = IntVar()
+            frame2 = Frame(self.testFrame1)
+            Button(testFrame, text='Select All', command=select_all).pack()
+            Button(testFrame, text='Deselect All', command=deselect_all).pack()
+            Label(testFrame,  text='Missing an Item? Add it!').pack()
+            Text(testFrame,height = 1,width=15).pack()
+            Button(testFrame, text= 'Add Missing Item',command=add_item).pack()
+            Button(testFrame,text="Everythings In!", command=CompleteList).pack()
+            self.testFrame1.grid(row=0, column=0, rowspan=3, columnspan=3, sticky='nsew')
 
             # for i in lst_cbox:
             #     i.select()
-        listFoods(self.testFrame1)
+        listFoods(self.testFrame1,lst_of_foods)
+        buttons(self.testFrame1)
+
 
         self.testFrame1.grid(row=0, column=0, rowspan=3, columnspan=3, sticky='nsew')
-        self.testFrame2.grid(row=3, column=0, rowspan=3, columnspan=3, sticky='nsew')
-        self.testFrame3.grid(row=0, column=3, rowspan=2, columnspan=3, sticky='nsew')
-        self.testFrame4.grid(row=2, column=3, rowspan=4, columnspan=3, sticky='nsew')
 
 
-lst_of_foods = [1,2,3]
-
-#MAKE WINDOW
-#
-# window = tk.Tk()
-# def makeWindow():
-#     window.title("FishFoodFactory")
-#     window.configure(width = 300, height = 500)
-#
-#
-# def listFoods():
-#     frame = tk.Frame()
-#
-#     for i in range(0,len(lst_of_foods)):
-#         vari = tk.IntVar()
-#         button = tk.Checkbutton(master = frame,text=lst_of_foods[i],variable=vari).grid(row=i)
-#         button.pack()
-#
-#
-#
 
 
 #DISPLAY THE WINDOW
